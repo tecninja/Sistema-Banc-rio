@@ -50,10 +50,10 @@ class Sistema:
         """
         try:
             if valor <= 0:
-                return f"Não é possível depositar R$ {valor:.2f}!", False
+                return f"Não é possível depositar R$ {valor:,.2f}!", False
             elif valor > self.limite_deposito:
                 return f"Valor a ser depositado excede limites! \
-                    Neste canal o valor máximo por depósito é de: R$ {self.limite_deposito:.2f}", False
+                    Neste canal o valor máximo por depósito é de: R$ {self.limite_deposito:,.2f}", False
             else:
                 valor_anterior = self.saldo
                 self.saldo += valor
@@ -72,8 +72,8 @@ class Sistema:
 SISTEMA BANCÁRIO\n
 {"- " * 20}
 Depósito efetuado com sucesso!\n
-Valor depositado: R$ {valor:.2f}\n
-Saldo em conta: R$ {st.session_state.saldo:.2f}
+Valor depositado: R$ {valor:,.2f}\n
+Saldo em conta: R$ {st.session_state.saldo:,.2f}
                        """, True
         
         
@@ -105,11 +105,11 @@ Saldo em conta: R$ {st.session_state.saldo:.2f}
             if qtd_saques >= self.limite_saques:
                 return "Você atingiu o seu limite máximo de saques hoje", False
             elif valor <= 0:
-                return f"Não é possível sacar R$ {valor:.2f}!", False
+                return f"Não é possível sacar R$ {valor:,.2f}!", False
             elif valor > self.saldo:
                 return "Saldo insuficiente para o valor solicitado!", False
             elif valor > self.limite_valor_saque:
-                return "Saque superior ao limite deste canal.\nLimite do canal R$ {:.2f}".format(self.limite_valor_saque), False
+                return "Saque superior ao limite deste canal.\nLimite do canal R$ {:,.2f}".format(self.limite_valor_saque), False
             else:
                 valor_anterior = self.saldo
                 self.saldo -= valor
@@ -128,8 +128,8 @@ Saldo em conta: R$ {st.session_state.saldo:.2f}
 SISTEMA BANCÁRIO\n
 {"-" * 20}\n
 Saque efetuado com sucesso!\n
-Valor sacado: R$ {valor:.2f}\n
-Saldo em conta: R$ {st.session_state.saldo:.2f}
+Valor sacado: R$ {valor:,.2f}\n
+Saldo em conta: R$ {st.session_state.saldo:,.2f}
                        """, True
         
     def extrato(self):
